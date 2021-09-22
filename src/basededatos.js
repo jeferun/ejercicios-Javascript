@@ -37,7 +37,7 @@ export const database = {
             generos: [1, 2]
         },
         {
-            id: 3,
+            id: 4,
             nombre: 'Indiana Jones y los cazadores del arca perdida',
             anio: 2012,
             direccionSetFilmacion: {
@@ -79,17 +79,17 @@ export const database = {
     ],
     calificaciones: [
         { critico: 1, pelicula: 1, puntuacion: 5 },
-        { critico: 1, pelicula: 3, puntuacion: 7.5 },
+        { critico: 1, pelicula: 3, puntuacion: 7.5 }, //
         { critico: 2, pelicula: 2, puntuacion: 4 },
         { critico: 2, pelicula: 3, puntuacion: 5 },
         { critico: 2, pelicula: 4, puntuacion: 2 },
-        { critico: 3, pelicula: 1, puntuacion: 6 },
+        { critico: 3, pelicula: 1, puntuacion: 6 }, //
         { critico: 3, pelicula: 3, puntuacion: 5 },
-        { critico: 3, pelicula: 4, puntuacion: 6 },
-        { critico: 4, pelicula: 1, puntuacion: 9 },
-        { critico: 4, pelicula: 2, puntuacion: 9.5 },
+        { critico: 3, pelicula: 4, puntuacion: 6 }, //
+        { critico: 4, pelicula: 1, puntuacion: 9 }, //
+        { critico: 4, pelicula: 2, puntuacion: 9.5 }, //
         { critico: 4, pelicula: 4, puntuacion: 1 },
-        { critico: 5, pelicula: 3, puntuacion: 7 },
+        { critico: 5, pelicula: 3, puntuacion: 7 }, //
         { critico: 5, pelicula: 4, puntuacion: 1 },
     ],
 };

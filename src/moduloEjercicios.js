@@ -1,13 +1,23 @@
 import basededatos from './basededatos.js';
 
+// constants
+const {
+  calificaciones,
+  criticos,
+  directores,
+  peliculas,
+} = basededatos;
+console.log({ peliculas });
 
 /**
 * Devuelve el promedio de anios de estreno de todas las peliculas de la base de datos.
 */
 export const promedioAnioEstreno = () => {
-    // Ejemplo de como accedo a datos dentro de la base de datos
-    // console.log(basededatos.peliculas);
-    return [];
+  // Ejemplo de como accedo a datos dentro de la base de datos
+  const sumaAnio = peliculas.reduce((acumulador, valorActual) => acumulador + valorActual.anio, 0);
+  const resultado = sumaAnio / peliculas.length;
+
+  return resultado;
 };
 
 /**
@@ -16,7 +26,25 @@ export const promedioAnioEstreno = () => {
 * @param {number} promedio
   */
 export const pelicuasConCriticaPromedioMayorA = (promedio) => {
-    return [];
+  const resultado = peliculas.filter((pelicula) => {
+    let cantidad = 0;
+    let sumaPuntuacion = 0;
+
+    for (const calificacion of calificaciones) {
+      if (pelicula.id === calificacion.pelicula) {
+        sumaPuntuacion += calificacion.puntuacion;
+        cantidad++;
+      }
+    }
+
+    const promedioPuntuacion = sumaPuntuacion / cantidad;
+    console.log(promedioPuntuacion);
+    const promedioValido = promedioPuntuacion > promedio
+
+    return promedioValido;
+  });
+
+  return resultado;
 };
 
 /**
@@ -24,7 +52,10 @@ export const pelicuasConCriticaPromedioMayorA = (promedio) => {
 * @param {string} nombreDirector
 */
 export const peliculasDeUnDirector = (nombreDirector) => {
-    return [];
+  const datosDirector = directores.find(director => director.nombre === nombreDirector);
+  const resultado = peliculas.filter(pelicula => pelicula.directores.includes(datosDirector.id));
+
+  return resultado;
 };
 
 /**
@@ -32,45 +63,49 @@ export const peliculasDeUnDirector = (nombreDirector) => {
 * @param {number} peliculaId
 */
 export const promedioDeCriticaBypeliculaId = (peliculaId) => {
-    return [];
+  let cantidad = 0;
+  let sumaPuntuacion = 0;
+
+  for (const calificacion of calificaciones) {
+    if (peliculaId === calificacion.pelicula) {
+      sumaPuntuacion += calificacion.puntuacion;
+      cantidad++;
+    }
+  }
+
+  const resultado = sumaPuntuacion / cantidad;
+
+  return resultado;
 };
 
 /**
  * Obtiene la lista de peliculas con alguna critica con
  * puntuacion excelente (critica >= 9).
  * En caso de no existir el criticas que cumplan, devolver un array vacio [].
- * Ejemplo del formato del resultado: 
- *  [
-        {
-            id: 1,
-            nombre: 'Back to the Future',
-            anio: 1985,
-            direccionSetFilmacion: {
-                calle: 'Av. Siempre viva',
-                numero: 2043,
-                pais: 'Colombia',
-            },
-            directores: [1],
-            generos: [1, 2, 6]
-        },
-        {
-            id: 2,
-            nombre: 'Matrix',
-            anio: 1999,
-            direccionSetFilmacion: {
-                calle: 'Av. Roca',
-                numero: 3023,
-                pais: 'Argentina'
-            },
-            directores: [2, 3],
-            generos: [1, 2]
-        },
-    ],
+ * Ejemplo del formato del resultado: array peliculas
  */
 export const obtenerPeliculasConPuntuacionExcelente = () => {
-    // Ejemplo de como accedo a datos dentro de la base de datos
-    // console.log(basededatos.peliculas);
-    return [];
+  // Ejemplo de como accedo a datos dentro de la base de datos
+  const promedio = 9;
+  const resultado = peliculas.filter((pelicula) => {
+    let cantidad = 0;
+    let sumaPuntuacion = 0;
+
+    for (const calificacion of calificaciones) {
+      if (pelicula.id === calificacion.pelicula) {
+        sumaPuntuacion += calificacion.puntuacion;
+        cantidad++;
+      }
+    }
+
+    const promedioPuntuacion = sumaPuntuacion / cantidad;
+    console.log(promedioPuntuacion);
+    const promedioValido = promedioPuntuacion >= promedio
+
+    return promedioValido;
+  });
+
+  return resultado;
 };
 
 /**
@@ -121,5 +156,5 @@ export const obtenerPeliculasConPuntuacionExcelente = () => {
  * @param {string} nombrePelicula
  */
 export const expandirInformacionPelicula = (nombrePelicula) => {
-    return {};
+  return {};
 };
